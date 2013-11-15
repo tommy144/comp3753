@@ -8,8 +8,12 @@
 </head>
 
 <body>
-  <h1>JUNK</h1>
-  <p>Stuff</p>
+
+<h1>JUNK</h1>
+<p>
+<?php echo "You have php running and junk." ?>
+</p>
+
 </body>
 
 </html>
