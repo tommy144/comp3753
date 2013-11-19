@@ -1,21 +1,11 @@
 <!DOCTYPE HTML>
-
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <title></title>
-</head>
-
+<html> 
 <body>
 
-<h1>JUNK</h1>
-<p>
-<?php echo "You have php running and junk." ?>
-</p>
+<form method="post" action="book.php">
+	<input type="text" name="input">
+<input type="submit">
+</form>
 
 </body>
-
 </html>
-
-
