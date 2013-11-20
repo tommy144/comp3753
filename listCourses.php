@@ -1,3 +1,6 @@
+<?php
+	session_start(); 
+?>
 <!DOCTYPE HTML>
 
 <html lang="en">
@@ -12,7 +15,6 @@
 <h1></h1>
 <p>
 <?php
-	session_start(); 
 	$link = mysql_connect('localhost', 'root', 'steeze')
     or die('Could not connect: ' . mysql_error());
 	mysql_select_db('bookstore') or die('Could not select database');

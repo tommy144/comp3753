@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE HTML>
 
 <html lang="en">
@@ -12,8 +13,43 @@
 <h1></h1>
 <p>
 <?php
-	session_start(); 
 	echo $_GET['var'];
+  try {
+    $conn = new PDO('mysql:host=localhost;dbname=bookstore', 'root', 'steeze');
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    $stmt = $conn->('SELECT ISBN, Title
+      FROM (join_Book_Section JOIN book on join_Book_Section.Book_ISBN=book.ISBN)
+      JOIN department
+      ON department.Code=join_Book_Section.Dept_Code
+      WHERE department.Name = :dept');
+
+    $stmt->bindParam(':dept', $_GET['var'], PDO::PARAM_STR);
+    $stmt->execute();
+
+    echo "<table>\n";
+    while ($line = $stmt->fetch())
+    {
+        echo "\t<tr>\n";
+        //echo $line[1];
+      $i = 1;
+      foreach ($line as $col_value)
+      {
+            
+        echo "\t\t<td> <a href=bookinfo.php?var=".$col_value.">".$col_value."</a></td>\n";
+        
+        $i++;
+        }
+        echo "\t</tr>\n";
+    }
+    echo "</table>\n";
+
+  } catch (PDOException $e) {
+    echo 'ERROR PLS: '.$e->getMessage();
+  }
+
+
+/*
 	$link = mysql_connect('localhost', 'root', 'steeze')
     or die('Could not connect: ' . mysql_error());
 	mysql_select_db('bookstore') or die('Could not select database');
@@ -46,6 +82,7 @@ WHERE department.Name="'.$_GET['var'].'"';
 
 	mysql_free_result($query);
 	mysql_close($link);
+*/
 ?>
 </p>
 

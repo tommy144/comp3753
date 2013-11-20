@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE HTML>
 
 <html lang="en">
@@ -12,7 +13,35 @@
 <h1></h1>
 <p>
 <?php
-	session_start(); 
+	echo $_GET['var'];
+  try {
+    $conn = new PDO('mysql:host=localhost;dbname=bookstore', 'root', 'steeze');
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    $stmt = $conn->('SELECT Title
+      FROM (join_Book_Section JOIN book on join_Book_Section.Book_ISBN=book.ISBN)
+      JOIN department
+      ON department.Code=join_Book_Section.Dept_Code
+      WHERE book.Title = :title');
+ 
+    $stmt->bindParam(':title', $_GET['var'], PDO::PARAM_STR);
+    $stmt->execute();
+    echo "<table>\n";
+    while ($line = $stmt->fetch())
+    {
+        echo "\t<tr>\n";
+        foreach ($line as $col_value)
+        {
+            echo "\t\t<td>$col_value</td>\n";
+        }
+        echo "\t</tr>\n";
+    }
+    echo "</table>\n";
+
+  } catch (PDOException $e) {
+    echo 'ERROR PLS: '.$e->getMessage();
+  }
+/*
 	echo $_GET['var'];
 	$link = mysql_connect('localhost', 'root', 'steeze')
     or die('Could not connect: ' . mysql_error());
@@ -41,6 +70,7 @@ WHERE book.Title="'.$_GET['var'].'"';
 
 	mysql_free_result($query);
 	mysql_close($link);
+*/
 ?>
 </p>
 

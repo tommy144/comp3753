@@ -27,6 +27,8 @@ if ($_GET['flag'] == 1)
 <a href="logout.php">Logout</a><br>
 <?php } ?>
 
+<hr>
+
 <a href="#" onclick="window.open('listDepartments.php', 'newwindow', 'width=300, height=500'); return false;">List of Departments</a>
 
 <form method="post" action="book.php">
