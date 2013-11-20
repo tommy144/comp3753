@@ -13,7 +13,7 @@
 <p>
 <?php
 	session_start(); 
-	//echo $_POST['input'];
+	echo $_GET['input'];
 	$link = mysql_connect('localhost', 'root', 'steeze')
     or die('Could not connect: ' . mysql_error());
 	mysql_select_db('bookstore') or die('Could not select database');

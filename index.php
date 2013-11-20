@@ -13,6 +13,5 @@
 	By Course:
 	<input type="text1" name="input">
 </form>
-<hr>
 </body>
 </html>
