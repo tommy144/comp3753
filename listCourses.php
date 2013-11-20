@@ -26,7 +26,7 @@
     	foreach ($line as $col_value) echo "\t\t<td>$col_value</td>\n";
     	echo "\t</tr>\n";
 	}
-	echo "</table>\n";
+	cho "</table>\n";
 
 	mysql_free_result($query);
 	mysql_close($link);
