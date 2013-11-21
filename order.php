@@ -63,8 +63,8 @@
       $stmt->execute();
     }
 
-    //header("Location: index.php");
-    //die();
+    header("Location: index.php");
+    die();
 
   } catch(PDOException $e) {
     echo 'ERROR ERROR: ' . $e->getMessage();
