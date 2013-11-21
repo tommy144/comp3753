@@ -24,6 +24,7 @@ if ($_GET['flag'] == 1)
 
 <?php } else { ?>
 <h3>Welcome <?php echo $_SESSION['user']; ?></h3>
+<a href="profile.php">Profile</a><br>
 <a href="logout.php">Logout</a><br>
 <?php if ($_SESSION['admin'] == 1) { ?>
 <a href="admin.php">ADMIN</a><br>
@@ -60,6 +61,5 @@ if ($_GET['flag'] == 1)
 <br>
 
 <a href="allbooks.php">All Books</a>
-
 </body>
 </html>

@@ -1,5 +1,8 @@
 <?php session_start();
 
+  var_dump($_POT['bools']);
+  die();
+
   if (!$_SESSION['user'] || $_POST['quantity'] <= 0) {
     header("Location: index.php");
     die();
