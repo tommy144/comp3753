@@ -53,8 +53,8 @@ if ($_GET['flag'] == 1)
   $arr = http_build_query(array('isbn' => $isbn));
 ?>
 <form method="post" action="order.php?<?php echo $arr; ?>">
-  <input type="number" name="quantity" value="1">
-  <input type="submit">
+  <input type="hidden" name="quantity" value="1">
+  <input type="submit" value="ORDER ALL">
 </form>
 
 </body>
