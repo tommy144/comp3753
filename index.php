@@ -57,5 +57,9 @@ if ($_GET['flag'] == 1)
   <input type="submit" value="ORDER ALL">
 </form>
 
+<br>
+
+<a href="allbooks.php">All Books</a>
+
 </body>
 </html>
