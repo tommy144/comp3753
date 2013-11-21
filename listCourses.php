@@ -20,7 +20,7 @@
 	$link = mysql_connect('localhost', 'root', 'steeze')
     or die('Could not connect: ' . mysql_error());
 	mysql_select_db('bookstore') or die('Could not select database');
-	$query = "SELECT Num, Title, Description FROM course ORDER BY Title";
+	$query = "SELECT Num, Title, Dept_Code Description FROM course ORDER BY Title";
 	$out = mysql_query($query) or die('query error ' . mysql_error());
 	$col_value;
 	echo "<table>\n";
@@ -30,11 +30,13 @@
 		echo "\t<tr>\n";
 		
 		echo "\t\t<td>";
-		echo "<a href=listsection.php?var=".$line[Num].">".$line[Num]."</a>";
+		echo "<a href=listsection.php?var=".$line[Num]."&var2=".$line[Dept_Code].">".$line[Num]."</a>";
 		echo "</td>\n";
     	
 		echo "\t\t<td>";
-		echo "<a href=book.php?var=".$line[Num].">".$line[Title]."</a>";
+//		echo "<a href=book.php?var=".$line[Num].">".$line[Title]."</a>";
+
+		echo "<a href=listsection.php?var=".$line[Num]."&var2=".$line[Dept_Code].">".$line[Title]."</a>";
 		echo "</td>\n";
 		
 		echo "\t\t<td>";

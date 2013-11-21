@@ -17,16 +17,16 @@ session_start(); ?>
     $conn = new PDO('mysql:host=localhost;dbname=bookstore', 'root', 'steeze');
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    $stmt = $conn->prepare('select * from section join course on section.Course_Number=course.Num where course.Num=:');
-    $stmt->bindParam(':dept', $_GET['var'], PDO::PARAM_STR);
+    $stmt = $conn->prepare('select * from section join course on section.Course_Number=course.Num where course.Num=:var');
+    $stmt->bindParam(':var', $_GET['var'], PDO::PARAM_STR);
     $stmt->execute();
     
     echo "<table>\n";
     while ($line = $stmt->fetch())
     {
       echo "\t<tr>\n";
-      echo "\t\t<td> <a href=bookinfo.php?var=".$line['ISBN'].">".$line['ISBN']."</a><br></td>\n\n";
-      echo "\t\t<td> <a href=bookinfo.php?var=".$line['ISBN'].">".$line['Title']."</a><br></td>\n\n";
+      //echo "\t\t<td> <a href=bookinfo.php?var=".$line['ISBN'].">".$line['Section_Name']."</a><br></td>\n\n";
+      //echo "\t\t<td> <a href=bookinfo.php?var=".$line['ISBN'].">".$line['Title']."</a><br></td>\n\n";
       echo "\t</tr>\n";
     }
     echo "</table>\n";
