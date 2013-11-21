@@ -41,13 +41,12 @@ if ($_GET['flag'] == 1)
 </form>
 
 <hr>
-<a href="#" onclick="window.open('listCourses.php', 'newwindow', 'width=700, height=500'); return false;">List of Courses</a>
+<a href="#" onclick="window.open('listCourses.php', 'newwindow', 'width=700, height=500'); return false;">List by Sections</a>
 <br>
 
-<form method="post" action="book1.php">
-  <label for="course">Course</label>
-	<input id="course" type="text" name="course">
-</form>
+<hr>
+<a href="#" onclick="window.open('listCourses1.php', 'newwindow', 'width=700, height=500'); return false;">List by Courses</a>
+<br>
 
 <?php $isbn = array(123456789,'123abc456');
   $arr = http_build_query(array('isbn' => $isbn));
