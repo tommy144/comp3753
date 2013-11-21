@@ -21,8 +21,10 @@ session_start(); ?>
     $stmt->bindParam(':var', $_GET['var'], PDO::PARAM_STR);
     $stmt->execute();
 	
-	$stmt2 = $conn->prepare(
-    echo "<table>\n";
+	$stmt2 = $conn->prepare('SELECT DISTINCT ISBN, Title, Author, Price, Quantity  FROM join_Book_Section JOIN book ON book.ISBN=join_Book_Section.Book_ISBN WHERE join_Book_Section.Course_Number=:cnum');
+	$stmt2->bindParam(':cnum', $_GET['var'], PDO::PARAM_STR);
+    $stmt2->execute();
+	echo "<table>\n";
     while ($line = $stmt->fetch())
     {
       	echo "\t<tr>\n";
@@ -31,6 +33,16 @@ session_start(); ?>
 
       //echo "\t\t<td> <a href=bookinfo.php?var=".$line['ISBN'].">".$line['Section_Name']."</a><br></td>\n\n";
       //echo "\t\t<td> <a href=bookinfo.php?var=".$line['ISBN'].">".$line['Title']."</a><br></td>\n\n";
+      echo "\t</tr>\n";
+    }
+    echo "</table>\n";
+	echo "<hr>";
+    echo "<table>\n";
+    while ($line = $stmt2->fetch())
+    {
+      echo "\t<tr>\n";
+      echo "\t\t<td> <a href=bookinfo.php?var=".$line['ISBN'].">".$line['ISBN']."</a><br></td>\n\n";
+      echo "\t\t<td> <a href=bookinfo.php?var=".$line['ISBN'].">".$line['Title']."</a><br></td>\n\n";
       echo "\t</tr>\n";
     }
     echo "</table>\n";

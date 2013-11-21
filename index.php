@@ -34,12 +34,6 @@ if ($_GET['flag'] == 1)
 
 <a href="#" onclick="window.open('listDepartments.php', 'newwindow', 'width=300, height=500'); return false;">List of Departments</a>
 
-<form method="post" action="book.php">
-  <label for="dept">Department</label>
-	<input id="dept" type="text" name="dept">
-  <input type="submit">
-</form>
-
 <hr>
 <a href="#" onclick="window.open('listCourses.php', 'newwindow', 'width=700, height=500'); return false;">List by Sections</a>
 <br>
@@ -59,6 +53,7 @@ if ($_GET['flag'] == 1)
 <br>
 
 <a href="allbooks.php">All Books</a>
-
+<p></p>
 </body>
+<footer>A Tom and Jeremy Production, 2013</footer>
 </html>
