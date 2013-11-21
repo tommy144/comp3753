@@ -13,7 +13,6 @@
 <body>
 
 <form method="get" action="listDepartments.php">
-<input type="submit">
 
 <h1></h1>
 <p>
@@ -21,7 +20,7 @@
 	$link = mysql_connect('localhost', 'root', 'steeze')
     or die('Could not connect: ' . mysql_error());
 	mysql_select_db('bookstore') or die('Could not select database');
-	$query = "SELECT Name FROM department";
+	$query = "SELECT Name FROM department ORDER BY Name";
 	$out = mysql_query($query) or die('query error ' . mysql_error());
 
 	echo "<table>\n";

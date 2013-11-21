@@ -25,11 +25,11 @@
     echo "<table>\n";
     if ($line = $stmt->fetch())
     {
-        echo '<h3>'.$line['Title'].'</h3>';
-        echo '<h3>'.$line['Author'].'</h3>';
-        echo '<h3>'.$line['ISBN'].'</h3>';
-        echo '<h3>'.$line['Price'].'</h3>';
-        echo '<h3>'.$line['Quantity'].'</h3>';
+        echo '<h3> Title: '.$line['Title'].'</h3>';
+        echo '<h3> Author: '.$line['Author'].'</h3>';
+        echo '<h3> ISBN: '.$line['ISBN'].'</h3>';
+        echo '<h3> Price: '.$line['Price'].'</h3>';
+        echo '<h3> Quantity: '.$line['Quantity'].'</h3>';
     } else {
       echo 'Not a valid book, guy.';
     }
