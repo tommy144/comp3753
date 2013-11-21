@@ -23,8 +23,11 @@ if ($_GET['flag'] == 1)
 <br>
 
 <?php } else { ?>
-<h3>Welcome <?php echo $_SESSION['user']; if ($_SESSION['admin'] == 1) echo "... the ADMIN!"; ?></h3>
+<h3>Welcome <?php echo $_SESSION['user']; ?></h3>
 <a href="logout.php">Logout</a><br>
+<?php if ($_SESSION['admin'] == 1) { ?>
+<a href="admin.php">ADMIN</a><br>
+<?php } ?>
 <?php } ?>
 
 <hr>
