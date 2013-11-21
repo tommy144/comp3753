@@ -13,30 +13,26 @@
 <h1></h1>
 <p>
 <?php
-	echo $_GET['var'];
   try {
     $conn = new PDO('mysql:host=localhost;dbname=bookstore', 'root', 'steeze');
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    $stmt = $conn->('SELECT Title
-      FROM (join_Book_Section JOIN book on join_Book_Section.Book_ISBN=book.ISBN)
-      JOIN department
-      ON department.Code=join_Book_Section.Dept_Code
-      WHERE book.Title = :title');
+    $stmt = $conn->prepare('SELECT * FROM book WHERE ISBN = :isbn');
  
-    $stmt->bindParam(':title', $_GET['var'], PDO::PARAM_STR);
+    $stmt->bindParam(':isbn', $_GET['var'], PDO::PARAM_STR);
     $stmt->execute();
+
     echo "<table>\n";
-    while ($line = $stmt->fetch())
+    if ($line = $stmt->fetch())
     {
-        echo "\t<tr>\n";
-        foreach ($line as $col_value)
-        {
-            echo "\t\t<td>$col_value</td>\n";
-        }
-        echo "\t</tr>\n";
+        echo '<h3>'.$line['Title'].'</h3>';
+        echo '<h3>'.$line['Author'].'</h3>';
+        echo '<h3>'.$line['ISBN'].'</h3>';
+        echo '<h3>'.$line['Price'].'</h3>';
+        echo '<h3>'.$line['Quantity'].'</h3>';
+    } else {
+      echo 'Not a valid book, guy.';
     }
-    echo "</table>\n";
 
   } catch (PDOException $e) {
     echo 'ERROR PLS: '.$e->getMessage();
