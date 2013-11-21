@@ -32,7 +32,7 @@
       echo '<td>'.$row['Price'].'</td>';
       echo '<td>'.$row['Quantity'].'</td>';
       echo '<td><form method="post" action="update.php?isbn='.$row['ISBN'].'">';
-      echo '<input type="text" name="quantity">';
+      echo '<input type="number" name="quantity" value="'.$row['Quantity'].'">';
       echo '<input type="submit">';
       echo '</form></td>';
       echo '</tr>';

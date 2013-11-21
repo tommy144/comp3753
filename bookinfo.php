@@ -25,11 +25,16 @@
     echo "<table>\n";
     if ($line = $stmt->fetch())
     {
-        echo '<h3>'.$line['Title'].'</h3>';
-        echo '<h3>'.$line['Author'].'</h3>';
-        echo '<h3>'.$line['ISBN'].'</h3>';
-        echo '<h3>'.$line['Price'].'</h3>';
-        echo '<h3>'.$line['Quantity'].'</h3>';
+      $price = $line['Price']/100;
+      echo '<h1>'.$line['Title'].'</h1>';
+      echo '<h3>'.$line['Author'].'</h3>';
+      echo '<p>ISBN: '.$line['ISBN'].'</p>';
+      echo '<p><strong>Price</strong>: $'.$price.'</p>';
+      echo '<p><strong>Available Quantity</strong>: '.$line['Quantity'].'</p>';
+      echo '<form method="post" action="order.php?isbn='.$row['ISBN'].'">';
+      echo '<input type="number" name="quantity">';
+      echo '<input type="submit">';
+      echo '</form>';
     } else {
       echo 'Not a valid book, guy.';
     }
@@ -37,36 +42,6 @@
   } catch (PDOException $e) {
     echo 'ERROR PLS: '.$e->getMessage();
   }
-/*
-	echo $_GET['var'];
-	$link = mysql_connect('localhost', 'root', 'steeze')
-    or die('Could not connect: ' . mysql_error());
-	mysql_select_db('bookstore') or die('Could not select database');
-	//$query = 'select * from student';
-	//$query = 'SELECT * FROM department WHERE department.Name="'.$_POST['input'].'"';
-	$query = 'SELECT Title
-FROM (join_Book_Section JOIN book on join_Book_Section.Book_ISBN=book.ISBN)
-JOIN department
-ON department.Code=join_Book_Section.Dept_Code
-WHERE book.Title="'.$_GET['var'].'"';
-	//echo $query;
-	$out = mysql_query($query) or die('query error ' . mysql_error());
-
-	echo "<table>\n";
-	while ($line = mysql_fetch_array($out, MYSQL_ASSOC)) 
-	{
-    	echo "\t<tr>\n";
-    	foreach ($line as $col_value)
-		{
-       		echo "\t\t<td>$col_value</td>\n";
-    	}
-    	echo "\t</tr>\n";
-	}
-	echo "</table>\n";
-
-	mysql_free_result($query);
-	mysql_close($link);
-*/
 ?>
 </p>
 

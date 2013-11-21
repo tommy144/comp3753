@@ -1,4 +1,4 @@
-<?php echo 'junks';
+<?php 
 session_start(); ?>
 <!DOCTYPE HTML>
 

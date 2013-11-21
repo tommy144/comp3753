@@ -45,8 +45,16 @@ if ($_GET['flag'] == 1)
 <br>
 
 <form method="post" action="book1.php">
-  <label for="course">Male</label>
+  <label for="course">Course</label>
 	<input id="course" type="text" name="course">
+</form>
+
+<?php $isbn = array(123456789,'123abc456');
+  $arr = http_build_query(array('isbn' => $isbn));
+?>
+<form method="post" action="order.php?<?php echo $arr; ?>">
+  <input type="number" name="quantity" value="1">
+  <input type="submit">
 </form>
 
 </body>
