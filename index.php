@@ -27,7 +27,8 @@ if ($_GET['flag']) {
 
 ?>
 
-<h1>Bookstore Junk</h1>
+<h1>Wow, Such Bookstore</h1>
+<img src="doge.png" alt="Doge">
 
 <?php if(!$_SESSION['user']) { ?>
 <form method="post" action="login.php">

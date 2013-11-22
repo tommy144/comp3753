@@ -15,7 +15,8 @@
 <a href="index.php">Home</a><br><br>
 <?php
   try {
-    $conn = new PDO('mysql:host=localhost;dbname=bookstore', 'root', 'steeze');
+    include 'config.php';
+    $conn = new PDO('mysql:host=localhost;dbname='.DATABASE, USERNAME, PASSWORD);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
     $stmt = $conn->prepare('SELECT book.* FROM ((student JOIN join_Student_Section ON student.Num=join_Student_Section.Student_Number) JOIN join_Book_Section ON join_Student_Section.Section_Number=join_Book_Section.Section_Number AND join_Student_Section.Course_Number=join_Book_Section.Course_Number) JOIN book ON book.ISBN=join_Book_Section.Book_ISBN WHERE student.Num=:student');

@@ -8,7 +8,8 @@
 <body>
 <?php
   try {
-    $conn = new PDO('mysql:host=localhost;dbname=bookstore', 'root', 'steeze');
+    include 'config.php';
+    $conn = new PDO('mysql:host=localhost;dbname='.DATABASE, USERNAME, PASSWORD);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $arr = array('ISBN', 'Title', 'Author', 'Price', 'Quantity');

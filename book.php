@@ -14,10 +14,11 @@ session_start(); ?>
 <h1></h1>
 <?php
   try {
-    $conn = new PDO('mysql:host=localhost;dbname=bookstore', 'root', 'steeze');
+    include 'config.php';
+    $conn = new PDO('mysql:host=localhost;dbname='.DATABASE, USERNAME, PASSWORD);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    $stmt = $conn->prepare('SELECT DISTINCT ISBN, Title FROM (join_Book_Section JOIN book on join_Book_Section.Book_ISBN=book.ISBN) JOIN department ON department.Code=join_Book_Section.Dept_Code WHERE department.Name = :dept');
+    $stmt = $conn->prepare('SELECT DISTINCT ISBN, Title, Author FROM (join_Book_Section JOIN book on join_Book_Section.Book_ISBN=book.ISBN) JOIN department ON department.Code=join_Book_Section.Dept_Code WHERE department.Name = :dept');
 
     $stmt->bindParam(':dept', $_GET['var'], PDO::PARAM_STR);
     $stmt->execute();

@@ -14,7 +14,8 @@ session_start(); ?>
 <h1></h1>
 <?php
   try {
-    $conn = new PDO('mysql:host=localhost;dbname=bookstore', 'root', 'steeze');
+    include 'config.php';
+    $conn = new PDO('mysql:host=localhost;dbname='.DATABASE, USERNAME, PASSWORD);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
     $stmt = $conn->prepare('SELECT * FROM (join_Book_Section join section on section.Num=join_Book_Section.Section_Number) join book on book.ISBN=join_Book_Section.Book_ISBN WHERE join_Book_Section.Section_Number=:SECT AND join_Book_Section.Course_Number=:COURSE');

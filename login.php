@@ -3,7 +3,8 @@
   //echo 'Start, u: '.$_POST['Num'].', p: '.$_POST['Password'].'<br>';
 
   try {
-    $conn = new PDO('mysql:host=localhost;dbname=bookstore', 'root', 'steeze');
+    include 'config.php';
+    $conn = new PDO('mysql:host=localhost;dbname='.DATABASE, USERNAME, PASSWORD);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
     $stmt = $conn->prepare('SELECT Num, Password, Pwsalt, Is_Employee FROM student WHERE Num = :num');
