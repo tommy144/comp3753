@@ -1,15 +1,16 @@
 <?php session_start();
 
-  var_dump($_POT['bools']);
-  die();
-
   if (!$_SESSION['user'] || $_POST['quantity'] <= 0) {
     header("Location: index.php");
     die();
   }
 
-  //print_r($_GET['isbn']);
-  //echo '<br>';
+  if (!is_array($_GET['isbn'])){
+    $books = array();
+    array_push($books, $_GET['isbn']);
+  } else {
+    $books = $_GET['isbn'];
+  }
 
   try {
     $conn = new PDO('mysql:host=localhost;dbname=bookstore', 'root', 'steeze');
@@ -29,7 +30,16 @@
     $stmt->bindParam(':stu', $_SESSION['user'], PDO::PARAM_INT);
     $stmt->execute();
 
-    foreach ($_GET['isbn'] as $isbn) {
+    $index = 0;
+
+    foreach ($books as $isbn) {
+      if (!isset($_POST['bools'.$index])) {
+        $index++;
+        continue;
+      }
+      else
+        $index++;
+
       $stmt = $conn->prepare('SELECT Quantity FROM book WHERE ISBN = :isbn_book');
       $stmt->bindParam(':isbn_book', $isbn, PDO::PARAM_STR);
       $stmt->execute();
@@ -37,11 +47,7 @@
         continue;
       else {
         if ($var['Quantity'] <= 0 || $var['Quantity'] < $_POST['quantity'])
-        {
-          print_r($var);
-          echo 'VAR: '.$var['Quantity'].' junks: '.$_POST['quantity'];
           continue;
-        }
       }
 
       $stmt = $conn->prepare('SELECT MAX(Num) AS Num FROM lineitem');

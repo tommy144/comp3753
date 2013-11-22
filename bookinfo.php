@@ -31,8 +31,9 @@
       echo '<p>ISBN: '.$line['ISBN'].'</p>';
       echo '<p><strong>Price</strong>: $'.$price.'</p>';
       echo '<p><strong>Available Quantity</strong>: '.$line['Quantity'].'</p>';
-      echo '<form method="post" action="order.php?isbn='.$row['ISBN'].'">';
-      echo '<input type="number" name="quantity">';
+      echo '<form method="post" action="order.php?isbn='.$line['ISBN'].'">';
+      echo '<input type="number" name="quantity" value="1">';
+      echo '<input type="hidden" name="bools0" value=1>';
       echo '<input type="submit">';
       echo '</form>';
     } else {
