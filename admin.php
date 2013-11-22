@@ -30,7 +30,7 @@
       echo '<td>'.$row['ISBN'].'</td>';
       echo '<td>'.$row['Title'].'</td>';
       echo '<td>'.$row['Author'].'</td>';
-      echo '<td>'.$row['Price'].'</td>';
+      echo '<td>$'.($row['Price']/100).'</td>';
       echo '<td>'.$row['Name'].' '.$row['Course_Number'].'</td>';
       echo '<td>'.$row['Quantity'].'</td>';
       echo '<td><form method="post" action="update.php?isbn='.$row['ISBN'].'">';
