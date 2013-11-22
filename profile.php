@@ -59,7 +59,7 @@
     echo '<hr><hr>';
 
 
-    $stmt = $conn->prepare('select orderb.Num, orderb.ODate, lineitem.Num, book.* from (orderb join lineitem on orderb.Num=lineitem.Order_Number) join book on lineitem.Item_ISBN=book.ISBN where orderb.Student_Num=:stud');
+    $stmt = $conn->prepare('select orderb.Num, orderb.ODate, lineitem.Num, book.*, lineitem.Quantity from (orderb join lineitem on orderb.Num=lineitem.Order_Number) join book on lineitem.Item_ISBN=book.ISBN where orderb.Student_Num=:stud');
     $stmt->bindParam(':stud', $_SESSION['user'], PDO::PARAM_INT);
     $stmt->execute();
     if ($row = $stmt->fetch()) {
@@ -70,6 +70,7 @@
         <td>'.$row['ISBN'].'</td>
         <td>'.$row['Title'].'</td>
         <td>'.$row['Author'].'</td>
+        <td>'.$row['Quantity'].'</td>
         <td>$'.($row['Price']/100).'</td>
         </tr>';
       while ($row1 = $stmt->fetch()) {
@@ -78,6 +79,7 @@
           <td>'.$row1['ISBN'].'</td>
           <td>'.$row1['Title'].'</td>
           <td>'.$row1['Author'].'</td>
+          <td>'.$row['Quantity'].'</td>
           <td>$'.($row1['Price']/100).'</td>
           </tr>';
         } else {
@@ -88,6 +90,7 @@
             <td>'.$row1['ISBN'].'</td>
             <td>'.$row1['Title'].'</td>
             <td>'.$row1['Author'].'</td>
+            <td>'.$row['Quantity'].'</td>
             <td>$'.($row1['Price']/100).'</td>
             </tr>';
         }
