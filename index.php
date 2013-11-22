@@ -16,17 +16,18 @@ if ($_GET['flag']) {
 <div style="background: red; width:100%;">Incorrect Login Credentials!</div>
 <?php  } else if ($_GET['flag'] == 5) { ?>
 <div style="background: green; width:100%;">Logged out successfully!</div>
+<?php  } else if ($_GET['flag'] == 6) { ?>
+<div style="background: red; width:100%;">Already Logged In!</div>
+<?php  } else if ($_GET['flag'] == 7) { ?>
+<div style="background: red; width:100%;">Student Number already exists!!</div>
+<?php  } else if ($_GET['flag'] == 8) { ?>
+<div style="background: green; width:100%;">Account Registered!</div>
 <?php }
 }
 
 ?>
 
 <h1>Bookstore Junk</h1>
-
-<?php
-if ($_GET['flag'] == 1)
-  echo "<p>INCORRECT LOGIN</p>";
-?>
 
 <?php if(!$_SESSION['user']) { ?>
 <form method="post" action="login.php">
@@ -38,6 +39,9 @@ if ($_GET['flag'] == 1)
   
   <input type="submit">
 </form>
+<br>
+<a href="register.php">Register</a>
+<br>
 
 <br>
 

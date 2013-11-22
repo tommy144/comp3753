@@ -10,7 +10,7 @@
     $conn = new PDO('mysql:host=localhost;dbname=bookstore', 'root', 'steeze');
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    $stmt = $conn->prepare('SELECT * FROM book');
+    $stmt = $conn->prepare('SELECT book.*, department.Name, join_Book_Section.Course_Number FROM (book join join_Book_Section ON book.ISBN = join_Book_Section.Book_ISBN) JOIN department ON join_Book_Section.Dept_Code=department.Code');
     $stmt->execute();
     
     echo '<table border="1" cellpadding="5">';
@@ -20,6 +20,7 @@
     echo "<th>Title</th>";
     echo "<th>Author</th>";
     echo "<th>Price</th>";
+    echo "<th>Course</th>";
     echo "<th>Quantity</th>";
     echo "<th>NEW QUANTITY</th>";
     echo '</tr>';
@@ -30,6 +31,7 @@
       echo '<td>'.$row['Title'].'</td>';
       echo '<td>'.$row['Author'].'</td>';
       echo '<td>'.$row['Price'].'</td>';
+      echo '<td>'.$row['Name'].' '.$row['Course_Number'].'</td>';
       echo '<td>'.$row['Quantity'].'</td>';
       echo '<td><form method="post" action="update.php?isbn='.$row['ISBN'].'">';
       echo '<input type="number" name="quantity" value="'.$row['Quantity'].'">';
