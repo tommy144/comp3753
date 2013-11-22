@@ -10,7 +10,7 @@
     $conn = new PDO('mysql:host=localhost;dbname=bookstore', 'root', 'steeze');
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    $stmt = $conn->prepare('SELECT book.*, department.Name, join_Book_Section.Course_Number FROM (book join join_Book_Section ON book.ISBN = join_Book_Section.Book_ISBN) JOIN department ON join_Book_Section.Dept_Code=department.Code');
+    $stmt = $conn->prepare('SELECT DISTINCT book.*, department.Name, join_Book_Section.Course_Number FROM (book join join_Book_Section ON book.ISBN = join_Book_Section.Book_ISBN) JOIN department ON join_Book_Section.Dept_Code=department.Code');
     $stmt->execute();
     
     echo '<table border="1" cellpadding="5">';
