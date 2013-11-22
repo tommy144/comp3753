@@ -26,7 +26,7 @@ session_start(); ?>
     while ($line = $stmt->fetch())
     {
       	echo "\t<tr>\n";
-		echo "\t\t<td> <a href=book1.php?Course_Num=".$line[Num]."&Section_Num=".$line[0].">".$line[Title]." ".$line[Section_Name]."</a><br></td>\n\n";
+		echo "\t\t<td> <a href=listBookBySection.php?Course_Num=".$line[Num]."&Section_Num=".$line[0].">".$line[Title]." ".$line[Section_Name]."</a><br></td>\n\n";
 
 
       //echo "\t\t<td> <a href=bookinfo.php?var=".$line['ISBN'].">".$line['Section_Name']."</a><br></td>\n\n";

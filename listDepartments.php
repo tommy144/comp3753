@@ -30,7 +30,7 @@
     	foreach ($line as $col_value)
 		{
        		echo "\t\t<td>";
-			echo "<a href=book.php?var=".$col_value.">".$col_value."</a>";
+			echo "<a href=listBooksforDept.php?var=".$col_value.">".$col_value."</a>";
 			echo "</td>\n";
     	}
     	echo "\t</tr>\n";
