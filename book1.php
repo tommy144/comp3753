@@ -28,6 +28,7 @@ session_start(); ?>
       echo "\t<tr>\n";
       echo "\t\t<td> <a href=bookinfo.php?var=".$line['ISBN'].">".$line['ISBN']."</a><br></td>\n\n";
       echo "\t\t<td> <a href=bookinfo.php?var=".$line['ISBN'].">".$line['Title']."</a><br></td>\n\n";
+      echo "\t\t<td> <a href=bookinfo.php?var=".$line['ISBN'].">".$line['Author']."</a><br></td>\n\n";
       echo "\t</tr>\n";
     }
     echo "</table>\n";
@@ -35,6 +36,8 @@ session_start(); ?>
     echo 'ERROR PLS: '.$e->getMessage();
   }
 ?>
+<br>
+<a href="index.php">Home</a>
 
 </body>
 

@@ -15,7 +15,7 @@
       if (hash('sha256', $_POST['Password'].$row['Pwsalt']) != $row['Password'])
       {
         //Login Failed
-        header("Location: index.php?flag=1");
+        header("Location: index.php?flag=4");
         die();
       }
       else
@@ -28,7 +28,7 @@
     }
     else
     {
-      header("Location: index.php?flag=1");
+      header("Location: index.php?flag=4");
       die();
     }
   } catch(PDOException $e) {

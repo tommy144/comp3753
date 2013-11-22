@@ -38,6 +38,7 @@ session_start(); ?>
     echo 'ERROR PLS: '.$e->getMessage();
   }
 ?>
+<a href="index.php">Home</a>
 
 </body>
 

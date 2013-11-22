@@ -1,7 +1,7 @@
 <?php session_start(); 
   if (!$_SESSION['user'])
   {
-    header('Location: index.php');
+    header('Location: index.php?flag=2');
     die();
   }
 ?>
@@ -12,6 +12,7 @@
   <title></title>
 </head>
 <body>
+<a href="index.php">Home</a><br><br>
 <?php
   try {
     $conn = new PDO('mysql:host=localhost;dbname=bookstore', 'root', 'steeze');
@@ -55,19 +56,51 @@
     echo '<input type="hidden" name="quantity" value="1">';
     echo '<input type="submit" value="ORDER SELECTED!">';
     echo '</form></table>';
+    echo '<hr><hr>';
+
+
+    $stmt = $conn->prepare('select orderb.Num, orderb.ODate, lineitem.Num, book.* from (orderb join lineitem on orderb.Num=lineitem.Order_Number) join book on lineitem.Item_ISBN=book.ISBN where orderb.Student_Num=:stud');
+    $stmt->bindParam(':stud', $_SESSION['user'], PDO::PARAM_INT);
+    $stmt->execute();
+    if ($row = $stmt->fetch()) {
+      $var = $row[0];
+      echo '<h3>ORDERS</h3>';
+      echo '<table border="1"><tr><th>Order '.$row[0].' on '.$row['ODate'].'</th></tr>
+        <tr>
+        <td>'.$row['ISBN'].'</td>
+        <td>'.$row['Title'].'</td>
+        <td>'.$row['Author'].'</td>
+        <td>$'.($row['Price']/100).'</td>
+        </tr>';
+      while ($row1 = $stmt->fetch()) {
+        if ($var == $row1[0]) {
+          echo '<tr>
+          <td>'.$row1['ISBN'].'</td>
+          <td>'.$row1['Title'].'</td>
+          <td>'.$row1['Author'].'</td>
+          <td>$'.($row1['Price']/100).'</td>
+          </tr>';
+        } else {
+          $var = $row1[0];
+          echo '</table><br><hr><br>';
+          echo '<table border="1"><tr><th>Order '.$row1[0].' on '.$row1['ODate'].'</th></tr>
+            <tr>
+            <td>'.$row1['ISBN'].'</td>
+            <td>'.$row1['Title'].'</td>
+            <td>'.$row1['Author'].'</td>
+            <td>$'.($row1['Price']/100).'</td>
+            </tr>';
+        }
+      }
+      echo '</table>';
+    }
 
 
   } catch(PDOException $e) {
     echo 'ERROR ERROR: ' . $e->getMessage();
   }
 ?>
-<?php/* $isbn = array(123456789,'123abc456');
-  $arr = http_build_query(array('isbn' => $isbn));
-?>
-<form method="post" action="order.php?<?php echo $arr; ?>">
-  <input type="submit" value="ORDER ALL">
-</form>
-*/ ?>
+<a href="index.php">Home</a>
 </body>
 </html>
 

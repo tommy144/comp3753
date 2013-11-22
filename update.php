@@ -2,7 +2,7 @@
   session_start();
 
   if (!$_SESSION['admin']) {
-    header("Location: index.php");
+    header("Location: index.php?flag=3");
     die();
   }
 

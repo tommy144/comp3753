@@ -1,7 +1,7 @@
 <?php session_start();
 
   if (!$_SESSION['user'] || $_POST['quantity'] <= 0) {
-    header("Location: index.php");
+    header("Location: index.php?flag=2");
     die();
   }
 
@@ -72,7 +72,7 @@
       $stmt->execute();
     }
 
-    header("Location: index.php");
+    header("Location: index.php?flag=1");
     die();
 
   } catch(PDOException $e) {

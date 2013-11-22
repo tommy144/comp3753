@@ -51,6 +51,7 @@
 	mysql_close($link);
 ?>
 </p>
+<a href="index.php">Home</a>
 
 </body>
 

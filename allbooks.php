@@ -64,7 +64,8 @@
     echo 'ERROR PLS: '.$e->getMessage();
   }
 ?>
-<a href="index.php">Back</a>
+<br>
+<a href="index.php">Home</a>
 
 </body>
 </html>
