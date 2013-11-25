@@ -40,6 +40,25 @@
       echo '</form></td>';
       echo '</tr>';
     }
+    $stmt = $conn->prepare('select section.Section_Name, course.Num, department.Name from (section join course course on section.Course_Number = course.Num) join department on department.Code = section.Dept_Code');
+    $stmt->execute();
+
+    echo '<tr><form method="post" action="addbook.php">';
+    echo '<td><input type="text" name="bookstore" placeholder="Bookstore" value="Acadia"></td>';
+    echo '<td><input type="text" name="isbn" placeholder="ISBN"></td>';
+    echo '<td><input type="text" name="title" placeholder="Title"></td>';
+    echo '<td><input type="text" name="author" placeholder="Author"></td>';
+    echo '<td><input type="number" name="price" placeholder="Price (In Pennies!!)"></td>';
+    echo '<td><select name="course">';
+    echo '<option value="">None</option>';
+    while ($ret = $stmt->fetch()) {
+    echo '<option>'.$ret['Name'].' '.$ret['Num'].' '.$ret['Section_Name'].'</option>';
+    }
+    echo '</select></td>';
+    echo '<td><input type="number" name="quantity" placeholder="Quantity"></td>';
+    echo '<td><input type="submit" value="Add">';
+    echo '</form></td>';
+    echo '</tr>';
     echo '</table>';
   } catch(PDOException $e) {
     echo 'ERROR: ' . $e->getMessage();
