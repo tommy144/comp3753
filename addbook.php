@@ -11,6 +11,7 @@
   echo $_POST['price'].'<br>';
   echo $_POST['course'].'<br>';
   echo $_POST['quantity'].'<br>';
+
 	if (!$_SESSION[admin])
 	{
 		header("Location: index.php?flag=3");
@@ -21,7 +22,16 @@
 		include 'config.php';
 		$conn = new PDO('mysql:host=localhost;dbname'.DATABASE, USERNAME, PASSWORD);
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	$s1 = $conn->prepare('INSERT INTO book VALUES('.$_POST['isbn'].$_POST[title].$_POST[author].$_POST[price].$_POST[quantity].$_POST[bookstore].')');
+		$s1 = $conn->prepare('INSERT INTO book VALUES('.$_POST['isbn'].','.$_POST[title].','.$_POST[author].','.$_POST[price].','.$_POST[quantity].','.$_POST[bookstore].')');
 		$s->execute();
+		
+		if ($_POST[course] != "")
+		{
+			$arr = strtok($_POST[course]," ");
+			$s2 = $conn->prepare('INSERT INTO join_Book_Section VALUES
+				('.$_POST[isbn].','.$_POST[sectionnum].','.arr[0].','.arr[1])
+			$s2->execute();
+		}
 	}
+*/
 ?>
