@@ -17,9 +17,10 @@
 <h1></h1>
 <p>
 <?php
-	$link = mysql_connect('localhost', 'root', 'steeze')
+	include 'config.php';
+	$link = mysql_connect('localhost', USERNAME, PASSWORD)
     or die('Could not connect: ' . mysql_error());
-	mysql_select_db('bookstore') or die('Could not select database');
+	mysql_select_db(DATABASE) or die('Could not select database');
 	$query = "SELECT Num, Title, Dept_Code Description FROM course ORDER BY Title";
 	$out = mysql_query($query) or die('query error ' . mysql_error());
 	$col_value;
