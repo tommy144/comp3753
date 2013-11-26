@@ -5,6 +5,10 @@
     header("Location: index.php?flag=3");
     die();
   }
+  if ($_POST['quantity'] < 0) {
+    header("Location: admin.php");
+    die();
+  }
 
   try {
     include 'config.php';
