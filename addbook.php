@@ -16,14 +16,12 @@
   var_dump($arr);
   echo '</pre>';
  */
-	if (!$_SESSION['admin'])
-	{
+	if (!$_SESSION['admin']) {
 		header("Location: index.php?flag=3");
 		die();
   }
 
-  if ($_POST['quantity'] < 0)
-  {
+  if ($_POST['quantity'] < 0) {
     header("Location: admin.php");
     die();
   }
@@ -34,7 +32,7 @@
     $conn = new PDO('mysql:host=localhost;dbname='.DATABASE, USERNAME, PASSWORD);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    if ($_POST['Title'] == "") {
+    if ($_POST['title'] == "") {
 			$arr = explode(" ", $_POST['course']);
       $stmt = $conn->prepare('INSERT INTO join_Book_Section (Book_ISBN, Section_Number, Dept_Code, Course_Number) 
         VALUES (:isbn, :section, :dept, :course)');
